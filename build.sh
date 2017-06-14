@@ -67,9 +67,9 @@ mkdir -p /userconf/{etc,work}
 mount none -t overlayfs -o lowerdir=/etc,upperdir=/userconf/etc,workdir=/userconf/work /etc
 EOF
 
-cat >"${WORK_DIR}/etc/initramfs-tools/scripts/init-bottom/losetup" <<'EOF'
+cat >"${WORK_DIR}/etc/initramfs-tools/scripts/init-premount/losetup" <<'EOF'
 #!/bin/sh -e
-losetup fw.squashfs /dev/loop0
+losetup /dev/loop0 fw.squashfs
 export ROOT=/dev/loop0
 EOF
 #chmod +x "${WORK_DIR}/etc/initramfs-tools/scripts/init-bottom/aufs"
